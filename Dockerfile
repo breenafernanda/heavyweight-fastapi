@@ -14,6 +14,6 @@ COPY ./app /code/app
 
 # instalar alembic 
 RUN pip install alembic
-
+COPY alembic.ini /app/alembic.ini
 # 
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
