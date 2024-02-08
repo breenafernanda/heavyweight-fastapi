@@ -10,15 +10,6 @@ class Handler():
 
 
 
-def check_chrome_installation():
-        print("Chrome não está instalado no ambiente.")
-
-def check_chromedriver_availability():
-        print("Certifique-se de que o ChromeDriver está instalado e configurado corretamente.")
-
-def abrir_navegador():
-        print(f'VERIFICAR NAVEGADOR ABERTO \n {erro}')
-
 app = FastAPI(
     title="Heavyweight(FastAPI)",
     docs_url="/",
@@ -70,15 +61,14 @@ async def receber_json(dados_json: dict):
             f'CPF: \x1b[31m{cpf}\x1b[32m\n'
             f'Valor da Proposta: \x1b[31m R$ {valor_proposta}\x1b[32m\n'
         )
-        # Chama a função para verificar a disponibilidade do ChromeDriver
-        # check_chromedriver_availability()
-        
-        # Chama a função para verificar a instalação do Chrome
-        check_chrome_installation()
+
         # driver = abrir_navegador()    
 
         return {"mensagem": "JSON recebido com sucesso", "dados": dados_json}
-  except Exception as e: print(f'\x1b[36mErro ao acessar API {e}')
+  except Exception as e: 
+      print(f'\x1b[36mErro ao acessar API {e}')
+      return {"mensagem": f"Falha ao executar API [{e}]", "dados": dados_json}
+      
 # Routers
 app.include_router(example_router, prefix="/example", tags=["Example Docs"])
 
