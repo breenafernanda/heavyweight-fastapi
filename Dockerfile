@@ -34,6 +34,9 @@ COPY alembic.ini /app/alembic.ini
 # Instalar o pydantic_settings
 RUN pip install pydantic-settings
 
+# Instalar o psycopg2 para PostgreSQL
+RUN pip install psycopg2-binary
+
 # Expor a porta que a aplicação FastAPI estará escutando
 EXPOSE 8000
 
