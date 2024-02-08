@@ -15,6 +15,10 @@ COPY requirements.txt /app/
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Criação de um ambiente virtual
+RUN python -m venv /venv
+ENV PATH="/venv/bin:$PATH"
+
 # Instalar o Alembic
 RUN pip install alembic
 
@@ -27,11 +31,8 @@ COPY . /app/
 # Adicionar o alembic.ini à imagem
 COPY alembic.ini /app/alembic.ini
 
-# Lista os arquivos no diretório /app/
-RUN ls -l /app/
-
-# Verifica se o Alembic existe
-RUN ls -l /usr/local/bin/alembic
+# Instalar o pydantic_settings
+RUN pip install pydantic-settings
 
 # Expor a porta que a aplicação FastAPI estará escutando
 EXPOSE 8000
