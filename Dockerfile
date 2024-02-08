@@ -17,7 +17,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copiar o código-fonte para o contêiner
 COPY . /app/
-
+# Verifica se o Alembic existe
+RUN ls -l /usr/local/bin/alembic
 # Adicionar o alembic.ini à imagem
 COPY alembic.ini /app/alembic.ini
 
