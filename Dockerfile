@@ -42,3 +42,6 @@ EXPOSE 8000
 
 # Comando para iniciar a aplicação
 CMD ["sh", "-c", "/usr/local/bin/alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000"]
+
+# Adicionar verificação
+HEALTHCHECK --interval=5s --timeout=3s CMD curl --fail http://localhost:8000/health || exit 1
