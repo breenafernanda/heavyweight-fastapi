@@ -44,4 +44,4 @@ EXPOSE 8000
 CMD ["sh", "-c", "/usr/local/bin/alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000"]
 
 # Adicionar verificação
-HEALTHCHECK --interval=5s --timeout=3s CMD curl --fail http://localhost:8000/health || exit 1
+HEALTHCHECK --interval=5s --timeout=3s CMD curl --fail heavyweight-fastapi-production-2349.up.railway.app/health || exit 1
