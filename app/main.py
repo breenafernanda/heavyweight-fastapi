@@ -65,8 +65,6 @@ async def receber_json(dados_json: dict):
 
 # Routers
 app.include_router(example_router, prefix="/example", tags=["Example Docs"])
-app.include_router(api_financiamento, prefix="/api_financiamento", tags=["API Financiamento"])
-app.include_router(health, prefix="/health", tags=["health"])
 
 if __name__ == "__main__":
     # Executa o aplicativo usando o servidor Uvicorn
