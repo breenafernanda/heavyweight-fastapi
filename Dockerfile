@@ -15,18 +15,23 @@ COPY requirements.txt /app/
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Instalar o Alembic
+RUN pip install alembic
+
+# Lista os arquivos no diretório /usr/local/bin/
+RUN ls -l /usr/local/bin/
+
 # Copiar o código-fonte para o contêiner
 COPY . /app/
-# Verifica se o Alembic existe
-RUN ls -l /usr/local/bin/alembic
+
 # Adicionar o alembic.ini à imagem
 COPY alembic.ini /app/alembic.ini
 
-# Instalar o Chrome
-RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-RUN echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
-RUN apt-get update -y
-RUN apt-get install -y google-chrome-stable
+# Lista os arquivos no diretório /app/
+RUN ls -l /app/
+
+# Verifica se o Alembic existe
+RUN ls -l /usr/local/bin/alembic
 
 # Expor a porta que a aplicação FastAPI estará escutando
 EXPOSE 8000
