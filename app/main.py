@@ -4,6 +4,21 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.dependencies import get_db
 from app.example_module.apis import router as example_router
 
+
+class Handler():
+    buffer = []
+
+
+
+def check_chrome_installation():
+        print("Chrome não está instalado no ambiente.")
+
+def check_chromedriver_availability():
+        print("Certifique-se de que o ChromeDriver está instalado e configurado corretamente.")
+
+def abrir_navegador():
+        print(f'VERIFICAR NAVEGADOR ABERTO \n {erro}')
+
 app = FastAPI(
     title="Heavyweight(FastAPI)",
     docs_url="/",
