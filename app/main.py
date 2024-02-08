@@ -46,6 +46,7 @@ def health_check(db=Depends(get_db)):
 # Rota para receber o JSON via método POST
 @app.post("/api_financiamento")
 async def receber_json(dados_json: dict):
+  try:
     print(f'Dados recebidos: {dados_json}')
     data = dados_json
     # identificar a proposta que foi enviada para adicionar ao array de buffer
@@ -77,7 +78,7 @@ async def receber_json(dados_json: dict):
         # driver = abrir_navegador()    
 
         return {"mensagem": "JSON recebido com sucesso", "dados": dados_json}
-
+  except Exception as e: print(f'\x1b[36mErro ao acessar API {e}')
 # Routers
 app.include_router(example_router, prefix="/example", tags=["Example Docs"])
 
