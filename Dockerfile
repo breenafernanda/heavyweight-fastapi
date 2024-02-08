@@ -22,9 +22,6 @@ ENV PATH="/venv/bin:$PATH"
 # Instalar o Alembic
 RUN pip install alembic
 
-# Lista os arquivos no diretório /usr/local/bin/
-RUN ls -l /usr/local/bin/
-
 # Copiar o código-fonte para o contêiner
 COPY . /app/
 
@@ -41,7 +38,4 @@ RUN pip install psycopg2-binary
 EXPOSE 8000
 
 # Comando para iniciar a aplicação
-CMD ["sh", "-c", "/usr/local/bin/alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port 8000"]
-
-# Adicionar verificação
-HEALTHCHECK --interval=5s --timeout=3s CMD curl --fail heavyweight-fastapi-production-2349.up.railway.app/health || exit 1
+CMD ["/venv/bin/alembic", "upgrade", "head", "&&", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
